@@ -15,7 +15,6 @@ const sequelize = new Sequelize(url);
 
 // Import the definition of the Quiz Table from quiz.js
 sequelize.import(path.join(__dirname, 'quiz'));
-
 // Session
 sequelize.import(path.join(__dirname,'session'));
 

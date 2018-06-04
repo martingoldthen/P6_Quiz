@@ -2,6 +2,7 @@ const Sequelize = require("sequelize");
 const {models} = require("../models");
 
 // Autoload the quiz with id equals to :quizId
+//Busca el quiz para que asi los demas metodos no tengan las mismas lineas de codigo
 exports.load = (req, res, next, quizId) => {
 
     models.quiz.findById(quizId)
@@ -19,7 +20,7 @@ exports.load = (req, res, next, quizId) => {
 
 // GET /quizzes
 exports.index = (req, res, next) => {
-
+ 
     models.quiz.findAll()
     .then(quizzes => {
         res.render('quizzes/index.ejs', {quizzes});
@@ -153,3 +154,5 @@ exports.check = (req, res, next) => {
         answer
     });
 };
+
+
