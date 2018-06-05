@@ -5,7 +5,7 @@ const quizController = require('../controllers/quiz');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
-  res.render('index');
+    res.render('index');
 });
 
 // Author page.
@@ -13,10 +13,6 @@ router.get('/author', (req, res, next) => {
     res.render('author');
 });
 
-//Play page
-router.get('/randomplay', (req, res, next) => {
-    res.render('quizzes/randomplay');
-});
 
 // Autoload for routes using :quizId
 router.param('quizId', quizController.load);
@@ -33,7 +29,11 @@ router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
 
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
-router.get('/quizzes/:quizId(\\d+)/randomcheck', quizController.randomcheck);
+
+router.get('/quizzes/randomplay', quizController.randomplay);
+router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
+
+
 
 
 module.exports = router;

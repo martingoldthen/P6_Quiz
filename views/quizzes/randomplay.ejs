@@ -1,19 +1,20 @@
-
 <h1>
-    Play:
+    Random Play:
 </h1>
-<%
 
- %>
-<form method="get" action="/quizzes/<%= quiz.id %>/randomcheck">
+<div>
+    Successful answers = <span id="score"><%= score %></span>
+</div>
+
+<form method="get" action="/quizzes/randomcheck/<%= quiz.id %>">
+
     <p>
         Question: <b><%= quiz.question %></b>
     </p>
+
+
     <div class="wideRow">
-        <input type="text" class="itemWide" name="answer" value="<%= answer %>" placeholder="Answer" autocomplete="off"/>
-        <input type="submit" class="itemNarrow" value="Check">
+        <input type="text" class="itemWide" id="answer" name="answer" value="" placeholder="Answer" autocomplete="off"/>
+        <input type="submit" class="itemNarrow" id="send" value="Check">
     </div>
 </form>
-
-<a href="/quizzes"><button>Go back</button></a>
-<a href=""><button>Next</button></a>
