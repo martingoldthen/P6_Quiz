@@ -2,13 +2,13 @@
 <h1>
     Play:
 </h1>
+<%
 
-<form method="get" action="/quizzes/<%= quiz.id %>/check">
+ %>
+<form method="get" action="/quizzes/<%= quiz.id %>/randomcheck">
     <p>
         Question: <b><%= quiz.question %></b>
     </p>
-
-
     <div class="wideRow">
         <input type="text" class="itemWide" name="answer" value="<%= answer %>" placeholder="Answer" autocomplete="off"/>
         <input type="submit" class="itemNarrow" value="Check">
@@ -16,3 +16,4 @@
 </form>
 
 <a href="/quizzes"><button>Go back</button></a>
+<a href=""><button>Next</button></a>
