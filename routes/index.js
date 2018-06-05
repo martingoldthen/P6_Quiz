@@ -33,7 +33,7 @@ router.delete('/quizzes/:quizId(\\d+)',    quizController.destroy);
 
 router.get('/quizzes/:quizId(\\d+)/play',  quizController.play);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
-router.get('/quizzes/:quizId(\\d+)/randomcheck)', quizController.randomcheck);
+router.get('/quizzes/:quizId(\\d+)/randomcheck', quizController.randomcheck);
 
 
 module.exports = router;
