@@ -39,7 +39,7 @@ exports.adminOrAuthorRequired = (req, res, next) => {
     }
 };
 
-
+//Comentario
 // GET /quizzes
 exports.index = (req, res, next) => {
 
