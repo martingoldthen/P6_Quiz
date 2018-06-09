@@ -122,7 +122,7 @@ router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 router.get('/quizzes/randomplay', quizController.randomplay);
 router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
 
-
+//Routes for the resource /tips
 router.post('/quizzes/:quizId(\\d+)/tips',
     sessionController.loginRequired,
     tipController.create);
@@ -134,6 +134,13 @@ router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
     sessionController.loginRequired,
     quizController.adminOrAuthorRequired,
     tipController.destroy);
-
+router.get('/quizzes/:quizId/tips/:tipId/edit',
+	sessionController.loginRequired,
+	tipController.adminOrAuthorRequired,
+	tipController.edit);
+router.put('/quizzes/:quizId/tips/:tipId',
+	sessionController.loginRequired,
+	tipController.adminOrAuthorRequired,
+	tipController.update);
 
 module.exports = router;
