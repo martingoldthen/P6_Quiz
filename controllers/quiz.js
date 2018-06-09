@@ -9,7 +9,7 @@ exports.load = (req, res, next, quizId) => {
 
     models.quiz.findById(quizId, {
         include: [
-            models.tip,
+            {model: models.tip, include: [{model: models.user, as: 'author'}]},
             {model: models.user, as: 'author'}
         ]
     })
@@ -39,7 +39,6 @@ exports.adminOrAuthorRequired = (req, res, next) => {
     }
 };
 
-//Comentario
 // GET /quizzes
 exports.index = (req, res, next) => {
 

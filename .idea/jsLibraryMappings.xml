@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
+    <file url="PROJECT" libraries="{@types/express, @types/express-flash, @types/express-flash-2, @types/express-flash-notification, @types/jquery, @types/sequelize, @types/sequelize-fixtures, @types/sqlite3, jquery}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

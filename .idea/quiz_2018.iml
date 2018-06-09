@@ -9,5 +9,14 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="@types/express" level="application" />
+    <orderEntry type="library" name="@types/express-flash" level="application" />
+    <orderEntry type="library" name="@types/express-flash-2" level="application" />
+    <orderEntry type="library" name="@types/express-flash-notification" level="application" />
+    <orderEntry type="library" name="@types/jquery" level="application" />
+    <orderEntry type="library" name="@types/sequelize" level="application" />
+    <orderEntry type="library" name="@types/sequelize-fixtures" level="application" />
+    <orderEntry type="library" name="@types/sqlite3" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>
