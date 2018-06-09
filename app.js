@@ -25,6 +25,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// In production (Heroku) I redirect the HTTP requests to https.
+// Documentation: http://jaketrent.com/post/https-redirect-node-heroku/
+if (app.get('env') === 'production') {
+    app.use(function(req, res, next) {
+        if (req.headers['x-forwarded-proto'] !== 'https') {
+            res.redirect('https://' + req.get('Host') + req.url);
+        } else {
+            next()
+        }
+    });
+}
+
 // Configuracion de la session para almacenarla en BBDD usando Sequelize.
 var sequelize = require("./models");
 var sessionStore = new SequelizeStore({
