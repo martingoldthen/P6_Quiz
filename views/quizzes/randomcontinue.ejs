@@ -1,0 +1,22 @@
+
+<h1>
+    Random Play:
+</h1>
+
+<div>
+    Number of questions you got right: <span id="score"><%= score %></span>
+</div>
+
+<p>
+    The answer <strong> <%= actual_answer %> </strong> is <%= result ? 'right' : 'wrong' %>.
+</p>
+
+<p>
+    <% if (!result) { %>
+    Chiqui, tas equivocao
+    <a href="/quizzes"> Me rindo </a>
+    <% } else { %>
+    Enhorabuena, no eres subnormal
+    <a href="/quizzes/randomplay"><button>A seguir</button></a>
+    <% } %>
+</p>

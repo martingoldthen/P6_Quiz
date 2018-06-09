@@ -224,3 +224,72 @@ exports.check = (req, res, next) => {
         answer
     });
 };
+
+exports.randomplay = (req, res, next) => {
+    //Si no existe crea la variable, si no, no hace nada
+    //Si no existe significa que el usuario está empezando a jugar ahora
+    req.session.alreadyPlayed = req.session.alreadyPlayed || [];
+
+    //Podemos tener la puntuación como la longitud del array (preguntas respondidas)
+    const score = req.session.alreadyPlayed.length;
+
+    //Condición para la busqueda en la BBDD (nos quitamos las ya respondidas)
+    const whereOpt = {id: {[Sequelize.Op.notIn] : req.session.alreadyPlayed}} ;
+
+    //Contamos número de quizzes restantes
+    models.quiz.count({where:whereOpt})
+        .then(count => {
+            return models.quiz.findAll({
+                where: whereOpt,
+                offset: Math.floor(Math.random()*count),
+                limit:1
+            })
+                .then(quizzes => {
+                    return quizzes[0];
+                })
+        })
+
+        .then(quiz => {
+            if(quiz === undefined) {
+                req.session.alreadyPlayed = [];
+                res.render('quizzes/random_end', {
+                    score: score
+                });
+            }else {
+                res.render('quizzes/randomplay', {
+                    quiz: quiz,
+                    score: score
+                });
+            }
+        })
+        .catch(error => next(error));
+
+};
+
+exports.randomcheck = (req, res, next) => {
+    try{
+        const {quiz, query} = req;
+        req.session.alreadyPlayed = req.session.alreadyPlayed || [];
+
+        const actual_answer = query.answer || "";
+        const right_answer = quiz.answer;
+
+        const result = actual_answer.toLowerCase().trim() === right_answer.toLowerCase().trim();
+
+        if (result){
+            if(req.session.alreadyPlayed.indexOf(req.quiz.id) === -1){
+                req.session.alreadyPlayed.push(req.quiz.id);
+            }
+        }
+
+        const score = req.session.alreadyPlayed.length;
+
+        if(!result){
+            req.session.alreadyPlayed = [];
+        }
+
+        res.render('quizzes/randomcontinue', {actual_answer, result, score});
+    } catch (error){
+        next(error);
+    }
+};
